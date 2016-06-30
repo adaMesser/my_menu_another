@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Implements hook_my_menu_menu().
+ */
+function my_menu_another_my_menu_menu($route, $item) {
+  $subitems = array();
+  if ($route == 'catalogue') {
+    $subitems['shop2'] = [
+      'title' => 'Shop 2',
+      'description' => 'Каталог магазинов',
+      'page callback' => 'my_menu_catalogue_shop_page',
+      'access callback' => TRUE,
+      'menu_name' => 'menu-test',
+      'expanded' => TRUE,
+    ];
+  }
+  return $subitems;
+}
+
+/**
+ * Implements hook_my_menu_menu_alter().
+ */
+function my_menu_another_my_menu_menu_alter(&$subitems, $route, $item) {
+  if ($route == 'catalogue') {
+    $subitems['shop1']['title'] = 'new shop 1';
+  }
+}
